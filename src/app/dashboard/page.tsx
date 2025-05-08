@@ -1,9 +1,13 @@
+
 'use client';
 
 import type { NextPage } from 'next';
+// import { useEffect, useState } from 'react'; // Keep useState if other stateful logic is added
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
+import { AddTaskDialog } from '@/components/tasks/AddTaskDialog';
 // import { TaskKanbanBoard } from '@/components/tasks/TaskKanbanBoard'; // To be implemented
+// import type { Task } from '@/types';
 
 const DashboardPage: NextPage = () => {
   // const [tasks, setTasks] = useState<Task[]>([]); // Example state for tasks
@@ -13,15 +17,23 @@ const DashboardPage: NextPage = () => {
   //   // This will be implemented with Firestore or other DB
   // }, []);
 
+  const handleTaskAdded = (taskId: string) => {
+    console.log('Task added with ID:', taskId);
+    // Here you might want to refresh the task list or update state
+    // For now, the Kanban board is a placeholder, so no direct UI update needed for the list itself
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           My Tasks
         </h1>
-        <Button>
-          <PlusCircle className="mr-2 h-4 w-4" /> Add Task
-        </Button>
+        <AddTaskDialog onTaskAdded={handleTaskAdded}>
+          <Button>
+            <PlusCircle className="mr-2 h-4 w-4" /> Add Task
+          </Button>
+        </AddTaskDialog>
       </div>
 
       {/* Placeholder for TaskKanbanBoard */}

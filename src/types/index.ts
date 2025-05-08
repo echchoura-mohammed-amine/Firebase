@@ -8,8 +8,9 @@ export interface User extends FirebaseUser {
 export type TaskPriority = 'Low' | 'Medium' | 'High';
 export type TaskStatus = 'Todo' | 'In Progress' | 'Done';
 
-export const TASK_STATUSES: TaskStatus[] = ['Todo', 'In Progress', 'Done'];
-export const TASK_PRIORITIES: TaskPriority[] = ['Low', 'Medium', 'High'];
+// Ensure the array is a tuple to satisfy z.enum
+export const TASK_PRIORITIES: [TaskPriority, ...TaskPriority[]] = ['Low', 'Medium', 'High'];
+export const TASK_STATUSES: [TaskStatus, ...TaskStatus[]] = ['Todo', 'In Progress', 'Done'];
 
 
 export interface Task {
@@ -20,6 +21,6 @@ export interface Task {
   priority: TaskPriority;
   status: TaskStatus;
   userId: string; // To associate task with a user
-  createdAt: number; // Timestamp
-  updatedAt: number; // Timestamp
+  createdAt: number; // Timestamp, e.g., Date.now()
+  updatedAt: number; // Timestamp, e.g., Date.now()
 }
